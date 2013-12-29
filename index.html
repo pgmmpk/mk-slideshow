@@ -33,56 +33,11 @@
 
 <p>An AngularJS component for creating slide shows.</p>
 
+<p>See <a href="https://github.com/pgmmpk/mk-slideshow">GitHub project</a> for more details.</p>p>
+
 <h2>
 <a name="demo" class="anchor" href="#demo"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p><strong>Work In Progress</strong></p>
-
-<h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
-
-<ol>
-<li>
-<p>Add script and css resources to your web page:</p>
-
-<pre><code>&lt;script src="//github.com/pgmmpk/mk-slideshow/dist/components/slideshow/mk.slideshow.js"&gt;&lt;/script&gt;
-&lt;link href="//github.com/pgmmpk/mk-slideshow/dist/components/slideshow/mk.slideshow.css" rel="stylesheet"&gt;
-</code></pre>
-</li>
-<li>
-<p>Add module dependency to your AngularJS app:</p>
-
-<pre><code>...
-var app = angular.modume('myApp', ['mk.slideshow']);
-...
-</code></pre>
-</li>
-<li>
-<p>Now <code>mk-slides</code> and <code>mk-slide</code> elements are available - use them in your markup, like this:</p>
-
-<pre><code>&lt;mk-slides&gt;
-    &lt;mk-slide url='image1.jpg' /&gt;
-    &lt;mk-slide url='image2.jpg' /&gt;
-    ...
-&lt;/mk-slides&gt;
-</code></pre>
-</li>
-</ol><h2>
-<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h2>
-
-<p>Directive <code>mk-slides</code> comes with number of useful attributes (a.k.a. options):</p>
-
-<ol>
-<li>
-<code>auto-start</code>   --- if defined to anything but 'false', slideshow will automatically start playing as soon as the page loads. Defaults to no auto-start.</li>
-<li>
-<code>showing-time</code> --- defines how fast slideshow goes. This value is the number of milliseconds for one slide to show. Default is 3000 (3 secs).</li>
-<li>
-<code>on-exit</code>      --- define here code to be executed when user clicks "close" button in the UI. Sensible thing to do is to hide the slideshow component.</li>
-</ol><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>MIT</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/pgmmpk">pgmmpk</a></p>
