@@ -1,4 +1,4 @@
-!!!5
+doctype html
 html(ng-app='slideshowDemo')
 	head
 		title Slideshow Demo
@@ -22,6 +22,6 @@ html(ng-app='slideshowDemo')
 
 	body(ng-controller='RootCtrl')
 		button.btn.btn-default(ng-show="!slideshow", ng-click='slideshow=true') Start Slideshow
-		mk-slides(showing-time='1500', auto-play='true', on-exit='exitCalled()', ng-if='slideshow');
+		mk-slides(showing-time='1500', auto-play='true', on-exit='exitCalled()', ng-if='slideshow')
 			mk-slide(ng-repeat='url in urls', url='{{url}}')
 

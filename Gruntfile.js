@@ -49,6 +49,19 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		
+		jade: {
+			compile: {
+				options: {
+					data: {
+						debug: false
+					}
+				},
+				files: {
+			      "dist/sample.html": ["views/index.jade"]
+				}
+			}
+		}		
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -56,7 +69,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-jade');	
 
 	grunt.registerTask('test', [ 'jshint', 'mocha' ]);
-	grunt.registerTask('default', [ 'test', 'uglify', 'cssmin' ]);
+	grunt.registerTask('default', [ 'test', 'uglify', 'cssmin', 'jade' ]);
 };
