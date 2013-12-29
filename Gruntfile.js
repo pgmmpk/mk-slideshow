@@ -17,20 +17,22 @@ module.exports = function(grunt) {
 		
 		mocha: {
 			test: {
-				src: ['public/test/*.html'],
+				src: ['public/test/*.html']
 			},
 		},
 		
 		copy: {
 			main: {
-				src: 'public/components/slideshow/*',
+				src: 'public/components/slideshow/mk.slideshow.*',
 				dest: 'dist/',
+				expand: true,
+				flatten: true
 			},
 		},
 			
 		uglify : {
 			options : {
-				banner : '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+				banner : '/*! <%= pkg.repository.url %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
 			},
 			dist : {
 				files : {
@@ -42,7 +44,7 @@ module.exports = function(grunt) {
 		cssmin: {
 			add_banner: {
 				options: {
-					banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+					banner: '/*! <%= pkg.repository.url %> <%= grunt.template.today("dd-mm-yyyy") %> */'
 				},
 				files: {
 					'dist/mk.slideshow.min.css': ['public/components/slideshow/mk.slideshow.css']
@@ -59,7 +61,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-			      "dist/sample.html": ["views/index.jade"]
+			      "dist/sample1.html": ["views/sample1.jade"]
 				}
 			}
 		}		
@@ -73,5 +75,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jade');	
 
 	grunt.registerTask('test', [ 'jshint', 'mocha' ]);
-	grunt.registerTask('default', [ 'test', 'uglify', 'cssmin', 'jade' ]);
+	grunt.registerTask('default', [ 'test', 'copy', 'uglify', 'cssmin', 'jade' ]);
 };
