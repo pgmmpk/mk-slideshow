@@ -4,7 +4,8 @@ An AngularJS component for creating slide shows.
 
 ## Demo
 
-[Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/sample1.html) [src](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/sample1.html)
+[Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/sample1.html)
+([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/sample1.html))
 
 ## Requirements
 
