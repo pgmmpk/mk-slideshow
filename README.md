@@ -4,6 +4,8 @@ An AngularJS component for creating slide shows.
 
 ## Demo
 
+**Work In Progress**
+
 ## Usage
 
 1. Add script and css resources to your web page:
