@@ -6,13 +6,21 @@ An AngularJS component for creating slide shows.
 
 **Work In Progress**
 
+## Requirements
+
+1. `angular.js`
+2. `angular-animate.js`
+3. `bootstrap.css`
+4. `font-awesome.css`
+5. `jquery.js`
+
 ## Usage
 
 1. Add script and css resources to your web page:
 
 	```
-	<script src="//github.com/pgmmpk/mk-slideshow/dist/components/slideshow/mk.slideshow.js"></script>
-	<link href="//github.com/pgmmpk/mk-slideshow/dist/components/slideshow/mk.slideshow.css" rel="stylesheet">
+	<script src="//pgmmpk.github.io/mk-slideshow/dist/mk.slideshow.min.js"></script>
+	<link href="//pgmmpk.github.io/mk-slideshow/dist/mk.slideshow.css" rel="stylesheet">
 	```
 
 2. Add module dependency to your AngularJS app:
