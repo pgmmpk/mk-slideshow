@@ -224,7 +224,7 @@
 		
 		$scope.exit = function() {
 			$scope.pause();
-			$scope.onExit && $scope.onExit();
+			$scope.onExit();
 		};
 		
 		if (!$scope.autoPlay) {
