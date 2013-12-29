@@ -1,10 +1,10 @@
-= mk.slideshow
+# mk.slideshow
 
 An AngularJS component for creating slide shows.
 
-== Demo
+## Demo
 
-== Usage
+## Usage
 
 1. Add script and css resources to your web page:
 
@@ -31,7 +31,7 @@ An AngularJS component for creating slide shows.
 	</mk-slides>
 	```
 
-== Options
+## Options
 
 Directive `mk-slides` comes with number of useful attributes (a.k.a. options):
 
@@ -39,5 +39,5 @@ Directive `mk-slides` comes with number of useful attributes (a.k.a. options):
 2. `showing-time` --- defines how fast slideshow goes. This value is the number of milliseconds for one slide to show. Default is 3000 (3 secs).
 3. `on-exit`      --- define here code to be executed when user clicks "close" button in the UI. Sensible thing to do is to hide the slideshow component.
 
-== License
+## License
 MIT
