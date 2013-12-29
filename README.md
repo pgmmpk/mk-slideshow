@@ -4,7 +4,7 @@ An AngularJS component for creating slide shows.
 
 ## Demo
 
-**Work In Progress**
+[Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/sample1.html) [src](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/sample1.html)
 
 ## Requirements
 
@@ -27,7 +27,7 @@ An AngularJS component for creating slide shows.
 
 	```
 	...
-	var app = angular.modume('myApp', ['mk.slideshow']);
+	var app = angular.modume('myApp', ['mk.slideshow', 'ngAnimate']);
 	...
 	```
 
