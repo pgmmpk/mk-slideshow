@@ -3,7 +3,7 @@
 	
 	var module = angular.module('mk.slideshow', []);
 	
-	module.directive('mkSlides', [function() {
+	module.directive('mkSlides', ['$rootScope', function($rootScope) {
 		return {
 			restrict   : 'E',
 			scope: {
@@ -53,7 +53,39 @@
 				scope.$on('$destroy', function() {
 					elm.off('mousemove').off('touchstart');
 				});
+				
+				$rootScope.$watchCollection('[viewportSize.width, viewportSize.height]', function() {
+					if ($rootScope.viewportSize && $rootScope.viewportSize.height > 0 && $rootScope.viewportSize.width > 0) {
+						elm.css({
+							width: $rootScope.viewportSize.width + 'px',
+							height: $rootScope.viewportSize.height + 'px'
+						});
+					}
+				});
 			}
+		};
+	}]);
+	
+	module.directive('mkViewportSize', ['$document', '$window', '$rootScope', function($document, $window, $rootScope) {
+		return function(scope, elm, attrs) {
+			
+			function recalc() {
+				var cw = $document[0].documentElement.clientWidth;
+				var ch = $document[0].documentElement.clientHeight;
+				
+				$rootScope.$apply(function() {
+					$rootScope.viewportSize = { width: cw, height: ch };
+				});
+			}
+			
+			$(function() {
+				recalc();
+			});
+			window.addEventListener('resize', recalc, false);
+
+			scope.$on('$destroy', function() {
+				window.removeEventListener('resize', recalc, false);
+			});
 		};
 	}]);
 	
