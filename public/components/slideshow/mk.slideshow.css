@@ -1,14 +1,12 @@
 .slides-container {
 	position: relative;
 	overflow: hidden;	
-	width: 100vw;
-	height: 100vh;
 }
 
 .slides {
 	position: relative;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	background-color: black;
 }
 
@@ -57,17 +55,18 @@
 	-webkit-transition: 0.35s linear all;
 	transition: 0.35s linear all;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .controls {
 	position: absolute;
-	height: 10vh;
-	width: 20vh;
-	border-top-left-radius: 10vh;
-	border-top-right-radius: 10vh;
+	height: 6em;
+	width: 12em;
+	border-top-left-radius: 6em;
+	border-top-right-radius: 6em;
 	bottom: 0;
 	left: 50%;
-	margin-left: -10vh;
+	margin-left: -6em;
 	text-align: center;
 }
 
@@ -75,15 +74,14 @@
 	position: absolute;
 	width: 24px;
 	height: 24px;
-	bottom: 4vh;
-	left: 10vh;
+	bottom: 1.25em;
+	left: 50%;
 	margin-left: -12px;
 	margin-right: -12px;
 	margin-bottom: -12px;
 	margin-top: -12px;
 	color: white;
 	padding: 0;
-	cursor: pointer;
 }
 
 .ephemeral {
@@ -92,13 +90,13 @@
 
 .left-pager {
 	position: absolute;
-	height: 20vh;
-	width: 10vh;
+	height: 12em;
+	width: 6em;
 	left: 0;
 	top: 50%;
-	margin-top: -10vh;
-	border-top-right-radius: 10vh;
-	border-bottom-right-radius: 10vh;
+	margin-top: -6em;
+	border-top-right-radius: 6em;
+	border-bottom-right-radius: 6em;
 }
 
 .left-pager i {
@@ -109,21 +107,19 @@
 	margin-top: -12px;
 	margin-right: -12px;
 	margin-left: -12px;
-	left: 4vh;
+	left: 1.25em;
 	color: white;
-	cursor: pointer;
 }
 
 .right-pager {
 	position: absolute;
-	height: 20vh;
-	width: 10vh;
+	height: 12em;
+	width: 6em;
 	right: 0;
 	top: 50%;
-	margin-top: -10vh;
-	border-top-left-radius: 10vh;
-	border-bottom-left-radius: 10vh;
-	cursor: pointer;
+	margin-top: -6em;
+	border-top-left-radius: 6em;
+	border-bottom-left-radius: 6em;
 }
 
 .right-pager i {
@@ -134,18 +130,17 @@
 	margin-top: -12px;
 	margin-left: -12px;
 	margin-right: -12px;
-	right: 4vh;
+	right: 1.25em;
 	color: white;
 }
 
 .closer {
 	position: absolute;
-	width: 10vh;
-	height: 10vh;
-	border-bottom-left-radius: 10vh;
+	width: 6em;
+	height: 6em;
+	border-bottom-left-radius: 6em;
 	right: 0;
 	top: 0;
-	cursor: pointer;
 }
 
 .closer i {
@@ -157,6 +152,6 @@
 	margin-right: -12px;
 	color: white;
 	position: absolute;
-	top: 4vh;
-	right: 4vh;
+	top: 1.25em;
+	right: 1.25em;
 }
