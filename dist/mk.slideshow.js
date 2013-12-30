@@ -14,7 +14,7 @@
 			transclude : true,
 			replace    : true,
 			template   : 
-				'<div class="slides-container">' + 
+				'<div class="slides-container" mk-viewport-size>' + 
 					'<div class="slides" ng-transclude/>' +
 					
 					'<form class="controls controls-color" ng-class=\'{"ephemeral": !canPlay() || (hidden && playing)}\' ng-click="togglePlay()">' +
@@ -72,19 +72,23 @@
 			function recalc() {
 				var cw = $document[0].documentElement.clientWidth;
 				var ch = $document[0].documentElement.clientHeight;
-				
+
+				return { width: cw, height: ch };
+			}
+			
+			function applyRecalc() {
 				$rootScope.$apply(function() {
-					$rootScope.viewportSize = { width: cw, height: ch };
+					$rootScope.viewportSize = recalc();
 				});
 			}
 			
 			$(function() {
-				recalc();
+				$rootScope.viewportSize = recalc();
 			});
-			window.addEventListener('resize', recalc, false);
+			window.addEventListener('resize', applyRecalc, false);
 
 			scope.$on('$destroy', function() {
-				window.removeEventListener('resize', recalc, false);
+				window.removeEventListener('resize', applyRecalc, false);
 			});
 		};
 	}]);
