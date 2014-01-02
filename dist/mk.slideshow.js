@@ -1,7 +1,7 @@
 (function(angular) {
 	'use strict';
 	
-	var module = angular.module('mk.slideshow', []);
+	var module = angular.module('mk.slideshow', ['ngTouch', 'ngAnimate']);
 	
 	module.directive('mkSlides', ['$rootScope', function($rootScope) {
 		return {
@@ -14,7 +14,7 @@
 			transclude : true,
 			replace    : true,
 			template   : 
-				'<div class="slides-container" mk-viewport-size>' + 
+				'<div class="slides-container" mk-viewport-size ng-swipe-left="pause(); next()" ng-swipe-right="pause(); prev()">' + 
 					'<div class="slides" ng-transclude/>' +
 					
 					'<form class="controls controls-color" ng-class=\'{"ephemeral": !canPlay() || (hidden && playing)}\' ng-click="togglePlay()">' +
@@ -101,7 +101,7 @@
 			replace : true,
 			scope   : true,
 			template:
-				'<div class="slide" ng-show="slide.showing">' + 
+				'<div class="slide" ng-class=\'{before: slide.index < currentIndex(), after: slide.index > currentIndex()}\'>' + 
 					'<div class="slide-not-ready" ng-hide="slide.ready">' +
 						'<i class="fa fa-spinner fa-spin fa-2x spinner"></i>' +
 					'</div>' +
@@ -111,6 +111,10 @@
 				'</div',
 			link    : function(scope, elm, attrs, ctrl) {
 				var img = elm.find('img');
+				
+				scope.currentIndex = function() {
+					return ctrl.currentIndex();
+				};
 				
 				attrs.$observe('url', function() {
 					if (attrs.url && !scope.slide) {
@@ -151,6 +155,10 @@
 		var slides = [];
 		
 		var currentIndex = 0;
+		
+		this.currentIndex = function() {
+			return currentIndex;
+		};
 		
 		$scope.hidden = false;
 		$scope.playing = false;
@@ -340,6 +348,7 @@
 		
 		this.addSlide = function(elm, src) {
 			var slide = createSlide(elm, src);
+			slide.index = slides.length;
 			slides.push( slide );
 			
 			maybeStartLoading();

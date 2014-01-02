@@ -20,17 +20,17 @@
 	height: 100%;
 	width : 100%;
 	
-	-webkit-transition: 0.5s linear all;
-	transition: 0.5s linear all;
+	-webkit-transition: 0.75s ease-in-out all;
+	transition: 0.75s ease-in-out all;
 	opacity: 1;
 }
 
-.slide.ng-hide {
-	opacity: 0;
+.slide.before {
+	left: -100%;
 }
 
-.slide.ng-hide-add, .slide.ng-hide-remove {
-	display: block!important;
+.slide.after {
+	left: 100%;
 }
 
 .slide-not-ready {
