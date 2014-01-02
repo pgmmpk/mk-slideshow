@@ -156,19 +156,9 @@
 		
 		var currentIndex = 0;
 		
-		this.compareToCurrentIndex = function(index) {
-			if (index < currentIndex) {
-				return -1;
-			} else if (index > currentIndex) {
-				return 1;
-			} else {
-				return 0;
-			}
-		}
-		
 		this.currentIndex = function() {
 			return currentIndex;
-		}
+		};
 		
 		$scope.hidden = false;
 		$scope.playing = false;
