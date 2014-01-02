@@ -10,6 +10,7 @@ An AngularJS component for creating slide shows.
 ## Requirements
 
 1. `angular.js`
+2. `angular-animate.js`
 2. `angular-touch.js`
 3. `bootstrap.css`
 4. `font-awesome.css`
