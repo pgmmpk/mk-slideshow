@@ -1,7 +1,7 @@
 (function(angular) {
 	'use strict';
 	
-	var module = angular.module('mk.slideshow', ['ngTouch', 'ngAnimate']);
+	var module = angular.module('mk.slideshow', ['ngTouch']);
 	
 	module.directive('mkSlides', ['$rootScope', function($rootScope) {
 		return {
