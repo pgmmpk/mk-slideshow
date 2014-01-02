@@ -1,6 +1,6 @@
 (function(angular) {
 	
-	var module = angular.module('slideshowDemo', ['mk.slideshow', 'ngAnimate']);
+	var module = angular.module('slideshowDemo', ['mk.slideshow']);
 
     module.controller('RootCtrl', ['$scope', '$location', function($scope, $location) {
 		

@@ -11,9 +11,10 @@ An AngularJS component for creating slide shows.
 
 1. `angular.js`
 2. `angular-animate.js`
-3. `bootstrap.css`
-4. `font-awesome.css`
-5. `jquery.js`
+3. `angular-touch.js`
+4. `bootstrap.css`
+5. `font-awesome.css`
+6. `jquery.js`
 
 ## Usage
 
