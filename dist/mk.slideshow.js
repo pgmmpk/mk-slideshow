@@ -9,17 +9,21 @@
 			scope: {
 				showingTime : '@',
 				autoPlay    : '@',
-				onExit      : '&'
+				onExit      : '&',
+				startIndex  : '@'
 			},
 			transclude : true,
 			replace    : true,
 			template   : 
 				'<div class="slides-container" mk-viewport-size ng-swipe-left="pause(); next()" ng-swipe-right="pause(); prev()">' + 
+					'<div class="slide-bg">' +
+						'<i class="fa fa-spinner fa-spin fa-2x spinner" ng-show="loading"></i>' +
+					'</div>' +
+
 					'<div class="slides" ng-transclude/>' +
-					
+
 					'<form class="controls controls-color" ng-class=\'{"ephemeral": !canPlay() || (hidden && playing)}\' ng-click="togglePlay()">' +
-						'<i class="fa fa-play fa-2x" ng-hide="playing"></i>' +
-						'<i class="fa fa-pause fa-2x" ng-hide="!playing"></i>' +
+						'<i class="fa fa-2x" ng-class=\'{"fa-play": !playing, "fa-pause": playing}\'"></i>' +
 					'</form>' +
 			
 					'<form class="left-pager controls-color" ng-class=\'{"ephemeral": !canPrev() || (hidden && playing)}\' ng-click="pause(); prev()">' +
@@ -36,7 +40,7 @@
 				'</div>',
 			controller: 'MkSlideshowCtrl',
 			link: function(scope, elm, attrs, ctrl) {
-				
+
 				var eventTarget = null;
 				
 				elm.on('mousemove', function(evt) {
@@ -101,10 +105,7 @@
 			replace : true,
 			scope   : true,
 			template:
-				'<div class="slide" ng-class=\'{before: slide.index < currentIndex(), after: slide.index > currentIndex()}\'>' + 
-					'<div class="slide-not-ready" ng-hide="slide.ready">' +
-						'<i class="fa fa-spinner fa-spin fa-2x spinner"></i>' +
-					'</div>' +
+				'<div class="slide" ng-class=\'{"slide-before": slide.index < currentIndex(), "slide-after": slide.index > currentIndex()}\'>' + 
 					'<div class="slide-ready" ng-show="slide.ready">' +
 						'<img></img>' +
 					'</div' +
@@ -154,7 +155,7 @@
 	                                        function($scope, $timeout, $q) {
 		var slides = [];
 		
-		var currentIndex = 0;
+		var currentIndex = +($scope.startIndex || 0);
 		
 		this.currentIndex = function() {
 			return currentIndex;
@@ -191,20 +192,11 @@
 		function showFrame() {
 			$scope.loading = true;
 			
-			slides.forEach(function(slide) {
-				slide.showing = false;
-			});
-			
 			var slide = slides[currentIndex];
 			if (!slide) {
 				return;
 			}
-			slide.showing = true;
-			slide.promise.then(function() {
-				$scope.loading = false;
-				scheduleNext();
-			}, function(error) {
-				console.log("slide failed to load", slide);
+			slide.promise.finally(function() {
 				$scope.loading = false;
 				scheduleNext();
 			});
@@ -233,7 +225,7 @@
 			
 			$scope.playing = false;
 		};
-		
+
 		$scope.togglePlay = function() {
 			if ($scope.playing) {
 				$scope.pause();
@@ -249,11 +241,11 @@
 				showFrame();
 			}
 		};
-		
+
 		$scope.canNext = function() {
 			return currentIndex < slides.length - 1;
 		};
-		
+
 		$scope.prev = function() {
 
 			if ($scope.canPrev()) {
@@ -261,23 +253,23 @@
 				showFrame();
 			}
 		};
-		
+
 		$scope.canPrev = function() {
 			return currentIndex > 0;
 		};
-		
+
 		$scope.exit = function() {
 			$scope.pause();
 			$scope.onExit();
 		};
-		
+
 		if (!$scope.autoPlay) {
 			$timeout(function() {
 				registerActivity(); // to trigger immediate hide countdown
 				showFrame();
 			});
 		}
-		
+
 		function createSlide(elm, src) {
 			var defer = $q.defer();
 			
@@ -288,70 +280,58 @@
 				promise : defer.promise
 			};
 			
-			slide.load = function(cb) {
-
-				if (!slide.elm[0].src) {
-					slide.elm[0].src = slide.src;
-					slide.elm[0].onload = function() {
-
-						slide.ready = true;
-
-						defer.resolve(slide);
-						cb(null, slide);
-						$scope.$apply();
-
-					};
-					slide.elm[0].onerror = function(err) {
-						slide.ready = true;
-						slide.error = err;
-						defer.reject(err);
-						cb(err, slide);
-						$scope.$apply();
-					};
-				} else {
-					$timeout(function() {
-						cb(slide.error, slide);
-					});
-				}
+			slide.load = function() {
+				slide.elm[0].src = slide.src;
+				slide.elm[0].onload = function() {
+					slide.ready = true;
+					defer.resolve(slide);
+					$scope.$apply();
+				};
+				slide.elm[0].onerror = function(err) {
+					slide.ready = true;
+					slide.error = err;
+					defer.reject(err);
+					$scope.$apply();
+				};
 			};
 
 			return slide;
 		}
 		
-		var loading = false;
 		var stopped = false;
-		
-		function maybeStartLoading() {
-			
-			if (loading || stopped) {
-				return;
-			}
-			
-			loading = true;
-			
-			var  i = 0;
-			
-			(function next() {
-				var slide = slides[i++];
-				if (!slide) {
-					loading = false;
-					return;
-				}
-				
-				slide.load(next);
-			})();
-		}
-		
+
 		$scope.$on('$destroy', function() {
 			stopped = true;
 		});
+
+		function loadImages() {
+			
+			var defer = $q.defer();
+			var promise = defer.promise;
+
+			slides.forEach(function(slide) {
+				promise.finally(function() {
+					if (!stopped) {
+						slide.load();
+					}
+				});
+				promise = slide.promise;
+			});
+			
+			defer.resolve();
+		}
 		
 		this.addSlide = function(elm, src) {
 			var slide = createSlide(elm, src);
 			slide.index = slides.length;
 			slides.push( slide );
-			
-			maybeStartLoading();
+
+			// all slides are added synchronously (this is how ngRepeat builds html)
+			// hence we need to schedule loader only once - when first slide is added
+			// and by the time loader is fired all slides will be there in place!
+			if (slides.length === 1) {
+				$timeout(loadImages);
+			}
 
 			return slide;
 		};
