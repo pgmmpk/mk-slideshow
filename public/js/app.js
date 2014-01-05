@@ -2,7 +2,7 @@
 	
 	var module = angular.module('slideshowDemo', ['mk.slideshow']);
 
-    module.controller('RootCtrl', ['$scope', '$location', function($scope, $location) {
+	module.controller('RootCtrl', ['$scope', '$location', function($scope, $location) {
 		
 		$scope.urls = [
 			'http://upload.wikimedia.org/wikipedia/commons/b/b1/Bijilo-Portrait-of-a-Callithrix-Monkey.jpg',
@@ -13,11 +13,13 @@
 			'http://upload.wikimedia.org/wikipedia/commons/0/0d/Northern_Pigtailed_macaque_at_Koh_Lanta_Yai_Monkey_School.JPG'
 		];
 		
-		$scope.exitCalled = function() {
-			$scope.slideshow = false;
+		// we put mutable 'slideshow' flag inside an object because ngIf creates its own scope.
+		// And we want to update this flag from the directive inside this ngIf. For detailed discussion of this 
+		// phenomenon see:
+		// https://github.com/angular/angular.js/wiki/Understanding-Scopes
+		$scope.api = {
+			slideshow: false
 		};
-		
-		$scope.slideshow = false;
 	}]);
 	
 })(angular);

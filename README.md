@@ -50,6 +50,8 @@ Directive `mk-slides` comes with number of useful attributes (a.k.a. options):
 1. `auto-start`   --- if defined to anything but 'false', slideshow will automatically start playing as soon as the page loads. Defaults to no auto-start.
 2. `showing-time` --- defines how fast slideshow goes. This value is the number of milliseconds for one slide to show. Default is 3000 (3 secs).
 3. `on-exit`      --- define here code to be executed when user clicks "close" button in the UI. Sensible thing to do is to hide the slideshow component.
+4. `start-index`  --- first slide to show. Defaults to 0 (shows from the beginning). This is useful if you want to show a specific image from a collection,
+						but allow user to browse other images and/or run the slideshow.
 
 ## License
 MIT
