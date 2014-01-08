@@ -60,9 +60,9 @@
 
 .controls-color {
 	background: rgba(0, 0, 0, 0.5);
-	opacity: 0.5;
-	-webkit-transition: 0.35s linear all;
-	transition: 0.35s linear all;
+	opacity: 0;
+	-webkit-transition: 0.35s ease-in opacity;
+	transition: 0.35s ease-in opacity;
 	overflow: hidden;
 	cursor: pointer;
 }
@@ -93,8 +93,12 @@
 	padding: 0;
 }
 
-.ephemeral {
-	opacity: 0!important;
+.controls-visible {
+	opacity: 0.5!important;
+}
+
+.ephemeral-add {
+	opacity: 1!important;
 }
 
 .left-pager {
