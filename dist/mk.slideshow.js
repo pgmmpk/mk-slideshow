@@ -22,19 +22,19 @@
 
 					'<div class="slides" ng-transclude/>' +
 
-					'<form class="controls controls-color" ng-class=\'{"ephemeral": !canPlay() || (hidden && playing)}\' ng-click="togglePlay()">' +
+					'<form class="controls controls-color" ng-class=\'{"controls-visible": canPlay() && !(hidden && playing)}\' ng-click="togglePlay()">' +
 						'<i class="fa fa-2x" ng-class=\'{"fa-play": !playing, "fa-pause": playing}\'"></i>' +
 					'</form>' +
 			
-					'<form class="left-pager controls-color" ng-class=\'{"ephemeral": !canPrev() || (hidden && playing)}\' ng-click="pause(); prev()">' +
+					'<form class="left-pager controls-color" ng-class=\'{"controls-visible": canPrev() && !(hidden && playing)}\' ng-click="pause(); prev()">' +
 						'<i class="fa fa-chevron-left fa-2x"></i>' +
 					'</form>' +
 		
-					'<form class="right-pager controls-color" ng-class=\'{"ephemeral": !canNext() || (hidden && playing)}\' ng-click="pause(); next()">' +
+					'<form class="right-pager controls-color" ng-class=\'{"controls-visible": canNext() && !(hidden && playing)}\' ng-click="pause(); next()">' +
 						'<i class="fa fa-chevron-right fa-2x"></i>' +
 					'</form>' +
 				
-					'<form class="closer controls-color" ng-class=\'{"ephemeral": canPlay() && hidden && playing}\' ng-click="pause(); exit()">' +
+					'<form class="closer controls-color" ng-class=\'{"controls-visible": !canPlay() || !hidden || !playing}\' ng-click="pause(); exit()">' +
 						'<i class="fa fa-times fa-2x"></i>' +
 					'</form>' +
 				'</div>',
