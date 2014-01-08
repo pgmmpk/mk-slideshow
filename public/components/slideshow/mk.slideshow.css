@@ -11,9 +11,6 @@
 
 .slide {
 	position: absolute;
-	
-	text-align: center;
-	
 	height: 100%;
 	width : 100%;
 	
@@ -40,6 +37,16 @@
 .slide-ready {
 	width: 100%;
 	height: 100%;
+}
+
+.slide-ready img {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 
 .spinner {
