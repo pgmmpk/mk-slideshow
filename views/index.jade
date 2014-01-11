@@ -22,7 +22,8 @@ html(ng-app='slideshowDemo')
 		script(src='components/slideshow/mk.slideshow.js')
 
 	body(ng-controller='RootCtrl')
-		button.btn.btn-default(ng-show="!api.slideshow", ng-click='api.slideshow=true') Start Slideshow
-		mk-slides(showing-time='1500', auto-play='true', on-exit='api.slideshow=false', start-index='0', ng-if='api.slideshow')
+		button.btn.btn-default(ng-show="!api.show", ng-click='api.autoPlay=true; api.startIndex=0; api.show=true') Start Slideshow (AutoPLay from offset 0)
+		button.btn.btn-default(ng-show="!api.show", ng-click='api.autoPlay=false; api.startIndex=2; api.show=true') Start Slideshow (offset 2, no autoPlay)
+		mk-slides(showing-time='1500', auto-play='{{api.autoPlay}}', on-exit='api.show=false', start-index='{{api.startIndex}}', ng-if='api.show')
 			mk-slide(ng-repeat='url in urls', url='{{url}}')
 

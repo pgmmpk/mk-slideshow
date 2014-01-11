@@ -13,12 +13,14 @@
 			'http://upload.wikimedia.org/wikipedia/commons/0/0d/Northern_Pigtailed_macaque_at_Koh_Lanta_Yai_Monkey_School.JPG'
 		];
 		
-		// we put mutable 'slideshow' flag inside an object because ngIf creates its own scope.
+		// we put mutable 'show' flag inside an object because ngIf creates its own scope.
 		// And we want to update this flag from the directive inside this ngIf. For detailed discussion of this 
 		// phenomenon see:
 		// https://github.com/angular/angular.js/wiki/Understanding-Scopes
 		$scope.api = {
-			slideshow: false
+			show       : false,
+			autoPlay   : false,
+			startIndex : 0
 		};
 	}]);
 	

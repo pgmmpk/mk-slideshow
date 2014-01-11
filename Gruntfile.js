@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		copy: {
 			main: {
 				src: 'public/components/slideshow/mk.slideshow.*',
-				dest: 'dist/',
+				dest: 'dist/<%= pkg.version %>/',
 				expand: true,
 				flatten: true
 			},
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
 			},
 			dist : {
 				files : {
-					'dist/mk.slideshow.min.js' : [ 'public/components/slideshow/mk.slideshow.js' ]
+					'dist/<%= pkg.version %>/mk.slideshow.min.js' : [ 'public/components/slideshow/mk.slideshow.js' ]
 				}
 			}
 		},
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 					banner: '/*! <%= pkg.repository.url %> <%= grunt.template.today("dd-mm-yyyy") %> */'
 				},
 				files: {
-					'dist/mk.slideshow.min.css': ['public/components/slideshow/mk.slideshow.css']
+					'dist/<%= pkg.version %>/mk.slideshow.min.css': ['public/components/slideshow/mk.slideshow.css']
 				}
 			}
 		},
@@ -57,7 +57,8 @@ module.exports = function(grunt) {
 				options: {
 					pretty: true,
 					data: {
-						debug: false
+						debug: false,
+						version: '<%= pkg.version %>'
 					}
 				},
 				files: {

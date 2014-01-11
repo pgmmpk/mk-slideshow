@@ -165,14 +165,6 @@
 		$scope.playing = false;
 		$scope.autoPlay = $scope.autoPlay && ($scope.autoPlay !== 'false');
 		
-		if ($scope.autoPlay) {
-			$scope.playing = true;
-			$scope.hidden = true;
-			$timeout(function() {
-				showFrame();
-			});
-		}
-		
 		function scheduleNext() {
 			
 			if (!$scope.playing) {
@@ -196,6 +188,8 @@
 			if (!slide) {
 				return;
 			}
+			
+			slide.load();
 			slide.promise.finally(function() {
 				$scope.loading = false;
 				scheduleNext();
@@ -209,6 +203,7 @@
 			}
 			
 			$scope.playing = true;
+			loadImages(currentIndex);
 			registerActivity();
 			showFrame();
 		};
@@ -233,7 +228,7 @@
 				$scope.play();
 			}
 		};
-		
+
 		$scope.next = function() {
 
 			if ($scope.canNext()) {
@@ -263,7 +258,13 @@
 			$scope.onExit();
 		};
 
-		if (!$scope.autoPlay) {
+		if ($scope.autoPlay) {
+			$scope.playing = true;
+			$scope.hidden = true;
+			$timeout(function() {
+				showFrame();
+			});
+		} else {
 			$timeout(function() {
 				registerActivity(); // to trigger immediate hide countdown
 				showFrame();
@@ -276,11 +277,16 @@
 			var slide = {
 				elm     : elm,
 				src     : src,
+				virgin  : true,
 				ready   : false,
 				promise : defer.promise
 			};
 			
 			slide.load = function() {
+				if (!slide.virgin) {
+					return;
+				}
+				slide.virgin = false;
 				slide.elm[0].src = slide.src;
 				slide.elm[0].onload = function() {
 					slide.ready = true;
@@ -298,27 +304,28 @@
 			return slide;
 		}
 		
-		var stopped = false;
-
 		$scope.$on('$destroy', function() {
-			stopped = true;
+			$scope.playing = false;
 		});
 
-		function loadImages() {
-			
-			var defer = $q.defer();
-			var promise = defer.promise;
+		function loadImages(index) {
+			var i = index;
+			(function next() {
+				var slide = slides[i++];
+				
+				if (!slide || !$scope.playing) {
+					return;
+				}
+				
+				if (!slide.virgin) {
+					return next();
+				}
 
-			slides.forEach(function(slide) {
-				promise.finally(function() {
-					if (!stopped) {
-						slide.load();
-					}
+				slide.load();
+				slide.promise.finally(function() {
+					next();
 				});
-				promise = slide.promise;
-			});
-			
-			defer.resolve();
+			})();
 		}
 		
 		this.addSlide = function(elm, src) {
@@ -330,7 +337,9 @@
 			// hence we need to schedule loader only once - when first slide is added
 			// and by the time loader is fired all slides will be there in place!
 			if (slides.length === 1) {
-				$timeout(loadImages);
+				$timeout(function() {
+					loadImages(currentIndex);
+				});
 			}
 
 			return slide;
