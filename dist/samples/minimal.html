@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="mk.slideshow">
+  <head>
+    <title>Slideshow Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <base href="/">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://pgmmpk.github.io/mk-slideshow/dist/0.0.2/mk.slideshow.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-touch.min.js"></script>
+    <script src="http://pgmmpk.github.io/mk-slideshow/dist/0.0.2/mk.slideshow.min.js"></script>
+  </head>
+  <body>
+    <mk-slides showing-time="1500" auto-play="true" on-exit="history.go(-1)">
+      <mk-slide url="http://upload.wikimedia.org/wikipedia/commons/b/b1/Bijilo-Portrait-of-a-Callithrix-Monkey.jpg"></mk-slide>
+      <mk-slide url="http://www.thelostogle.com/wp-content/uploads/2013/12/happy-monkey.jpg"></mk-slide>
+      <mk-slide url="http://www.metalsucks.net/wp-content/uploads/2013/03/superfunnypetmonkey01big.jpg"></mk-slide>
+      <mk-slide url="http://www.newscientist.com/blogs/shortsharpscience/assets_c/2011/07/SelfMonkey-thumb-600x723-131986.jpg"></mk-slide>
+      <mk-slide url="http://intervexion.com/wp-content/uploads/2012/12/monkey.jpg"></mk-slide>
+      <mk-slide url="http://upload.wikimedia.org/wikipedia/commons/0/0d/Northern_Pigtailed_macaque_at_Koh_Lanta_Yai_Monkey_School.JPG"></mk-slide>
+    </mk-slides>
+  </body>
+</html>
