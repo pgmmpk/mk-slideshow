@@ -62,7 +62,8 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-			      "dist/sample1.html": ["views/sample1.jade"]
+					"dist/samples/minimal.html": ["views/samples/minimal.jade"],
+					"dist/samples/button.html": ["views/samples/button.jade"],
 				}
 			}
 		}		

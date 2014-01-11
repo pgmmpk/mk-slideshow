@@ -4,8 +4,10 @@ An AngularJS component for creating slide shows.
 
 ## Demo
 
-[Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/sample1.html)
-([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/sample1.html))
+1. Minimal: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/mimimal.html)
+            ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/minimal.html))
+2. Triggered by button: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/button.html)
+            ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/button.html))
 
 ## Requirements
 
@@ -29,14 +31,14 @@ An AngularJS component for creating slide shows.
 
 2. Add script and css resources to your web page:
 
-	```
+	```html
 	<script src="//pgmmpk.github.io/mk-slideshow/dist/0.0.2/mk.slideshow.min.js"></script>
 	<link href="//pgmmpk.github.io/mk-slideshow/dist/0.0.2/mk.slideshow.css" rel="stylesheet">
 	```
 
 3. Add module dependency to your AngularJS app:
 
-	```
+	```javascript
 	...
 	var app = angular.modume('myApp', ['mk.slideshow']);
 	...
@@ -44,7 +46,7 @@ An AngularJS component for creating slide shows.
 
 4. Now `mk-slides` and `mk-slide` elements are available - use them in your markup, like this:
 
-	```
+	```html
 	<mk-slides>
 		<mk-slide url='image1.jpg' />
 		<mk-slide url='image2.jpg' />
