@@ -8,6 +8,8 @@ An AngularJS component for creating slide shows.
             ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/minimal.html))
 2. Triggered by button: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/button.html)
             ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/button.html))
+3. Slide show powered by Google image search: [Donkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/search.html)
+            ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/search.html))
 
 ## Requirements
 
