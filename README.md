@@ -4,7 +4,7 @@ An AngularJS component for creating slide shows.
 
 ## Demo
 
-1. Minimal: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/mimimal.html)
+1. Minimal: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/minimal.html)
             ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/minimal.html))
 2. Triggered by button: [Monkeys](http://pgmmpk.github.io/mk-slideshow/dist/samples/button.html)
             ([source](https://github.com/pgmmpk/mk-slideshow/blob/master/dist/samples/button.html))
