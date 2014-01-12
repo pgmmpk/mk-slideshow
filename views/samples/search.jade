@@ -27,15 +27,24 @@ html(ng-app='slideshowDemo')
 		script(type="text/javascript").
 			google.load('search', '1');
 			google.setOnLoadCallback(function() {
-				window.search = new google.search.ImageSearch();
+				var search = new google.search.ImageSearch();
+				window.search = function(query, callback) {
+					search.setSearchCompleteCallback(null, function() {
+						window.setTimeout(function() {
+							callback(search.results);
+						}, 0);
+					});
+					
+					search.execute(query);
+				};
 			});
 			
 			(function(angular, google) {
 				
 				var module = angular.module('slideshowDemo', ['mk.slideshow']);
 				
-				module.controller('RootCtrl', ['$scope', '$location', 
-							function($scope, $location) {
+				module.controller('RootCtrl', ['$scope', '$location', '$timeout',
+							function($scope, $location, $timeout) {
 					
 					$scope.urls = [];
 					
@@ -48,19 +57,18 @@ html(ng-app='slideshowDemo')
 					$scope.search = function() {
 						$scope.searching = true;
 
-						window.search.setSearchCompleteCallback(null, function() {
-							console.log(search.results);
-							$scope.searching = false;
-							$scope.urls.length = 0;
-							if (search.results && search.results.length > 0) {
-								search.results.forEach(function(result) {
-									$scope.urls.push(result.url);
-								});
-								$scope.api.show = true;
-								$scope.$apply();
-							}
+						window.search($scope.query, function(results) {
+							$scope.$apply(function() {
+								$scope.searching = false;
+								$scope.urls.length = 0;
+								if (results && results.length > 0) {
+									results.forEach(function(result) {
+										$scope.urls.push(result.url);
+									});
+									$scope.api.show = true;
+								}
+							});
 						});
-						window.search.execute($scope.query);
 					};
 				}]);
 				
@@ -72,7 +80,7 @@ html(ng-app='slideshowDemo')
 			.col-md-14
 				p Enter search query and hit "Go!". Image search powered by 
 					a(href="http://www.google.com") Google
-				.form-inline
+				form.form-inline
 					.form-group
 						input.form-control(type='text', ng-model='query')
 					.form-group
